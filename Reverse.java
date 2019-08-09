@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import javax.sound.midi.Soundbank;
 
-public class Main {
+public class Reverse {
  
 	static Scanner sc = new Scanner(System.in);
 	static String CONTINUE = "continue";
