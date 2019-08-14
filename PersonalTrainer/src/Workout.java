@@ -1,12 +1,13 @@
 
 public enum Workout {
-	Pushups(3, 5), Pullups(3, 6), Squats(2, 2), Rowing(4, 5), IndoorSpinning(5, 7), Aerobics(2, 3), Running(6, 8);
+	Pushups(6, 3), Pullups(5, 5), Squats(2, 2), Rowing(6, 6), IndoorSpinning(5, 7), Aerobics(2, 3), Running(8, 4);
 
-	int burnout;
+	int stamina;
 	int strength;
 
-	private Workout(int burnout, int strength) {
-		this.burnout = burnout;
+	private Workout(int stamina, int strength) {
+		this.stamina = stamina;
 		this.strength = strength;
 	}
 }
+
