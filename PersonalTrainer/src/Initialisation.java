@@ -31,7 +31,7 @@ public class MainController {
 			trainee = new Trainee("SamBennet");
 		}
 	}
-    //initialise main apllication classes
+    //initialise main application classes
 	public void initApp() {
 		initScanner();
 		initSupliments();
