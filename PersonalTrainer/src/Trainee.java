@@ -34,7 +34,6 @@ public class Trainee {
 		if (checkStrengthLevel()) {
 			decreaseStrength();
 		}
-
 		this.stamina = this.stamina + work.getStamina();
 		this.strength = this.strength + work.getStrength();
 	}

@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class MainController {
-	private Scanner scanner;
-	Supliments supliments;
-	Trainer trainer;
-	Trainee trainee;
+    private Scanner scanner;
+	private Supliments supliments;
+	private Trainer trainer;
+	private Trainee trainee;
 
 	public void initScanner() {
 		scanner = Utils.getScanner();
@@ -31,7 +31,7 @@ public class MainController {
 			trainee = new Trainee("SamBennet");
 		}
 	}
-
+    //initialise main apllication classes
 	public void initApp() {
 		initScanner();
 		initSupliments();
