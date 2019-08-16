@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MainController {
+public class Initialisation {
     private Scanner scanner;
 	private Supliments supliments;
 	private Trainer trainer;

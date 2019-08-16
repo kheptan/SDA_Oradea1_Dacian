@@ -1,14 +1,14 @@
-public class MainTrainer {
+public class AppController {
 	
 	public static void main(String[] args) {
 		//init controller
-		MainController mc = new MainController();
-		mc.initApp();
+		Initialisation init = new Initialisation();
+		init.initApp();
         
 		//make new instances  
-		Trainee trainee = mc.getTrainee();
-		Trainer trainer = mc.getTrainer();
-		Supliments supliments = mc.getSupliments();
+		Trainee trainee = init.getTrainee();
+		Trainer trainer = init.getTrainer();
+		Supliments supliments = init.getSupliments();
 		
 		//trainee warmup before workout
 		trainee.warmUp();
@@ -29,8 +29,8 @@ public class MainTrainer {
 			}
 			
 			System.out.println("Continue with workouts ? Press C for continue or Q for quiting workout");
-			mc.getS().hasNext();
-			char result = mc.getS().next().charAt(0);
+			init.getS().hasNext();
+			char result = init.getS().next().charAt(0);
 			//continue or quit the workout
 			if (trainer.nextWorkout(result)) {
 				continue;
@@ -41,6 +41,6 @@ public class MainTrainer {
 			}
 		}
 		trainee.coolDown();
-		mc.closeScanner();
+		init.closeScanner();
 	}
 }
