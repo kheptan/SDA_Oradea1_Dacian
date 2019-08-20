@@ -11,4 +11,8 @@ public class Util {
     	}
     	
     }
+    
+    public static void setScanner(Scanner scanner) {
+    	sc = scanner;
+    }
 }

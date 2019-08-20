@@ -8,20 +8,35 @@ public class GameController {
 	private static final int MINIM = 0;
 	private static final int RANGE = 1;    
     private int counter = 0;
-	private int[][] results = new int[3][3];
+	private int[][] results;
 	private boolean isFirstPlayer = false;	
 	private boolean winner = false;	
 	private int winnerValue=0;
 	private Player player1;
 	private Player player2;
 	
+	private void initScoreTable() {
+		if (results == null) {
+			results = new int[3][3];
+		}
+	}
+	public void resetGame() {
+		player1 = null;
+		player2 = null;
+		winner = false;
+		winnerValue = 0;
+		counter = 0;
+		isFirstPlayer = false;		
+		results = null;
+		Util.setScanner(null);
+	}
 	
 	//Initialise two players and set name for each
 	public void createPlayers(Scanner sc) {
 		if (player1 == null) {
 		     player1 = new Player(setPlayerName(sc));
 		} 
-		if (player2 ==null) {
+		if (player2 == null) {
 			player2 = new Player(setPlayerName(sc));
 		}		
 	}
@@ -32,6 +47,7 @@ public class GameController {
 	}
     //entry point in game
 	public void playGame(Scanner scanner) {
+		initScoreTable();
 		setPlayers(player1, player2, scanner);
 	}
     //check if a first player exist, if not generate randomly first player
@@ -74,8 +90,7 @@ public class GameController {
 	//before reading a player entry check if there is a winning line	
 	private void startReading(Player player,Scanner scanner) {
 		if(checkWinner()) {
-			 System.out.println("We have a winner : " + winnerName());
-		     scanner.close();
+			 System.out.println("We have a winner : " + winnerName());		     
 		} else if (player.isFirst() || (!player.isFirst() && counter < 8)) {
 			readAndSetResult(player, scanner);
 		}
