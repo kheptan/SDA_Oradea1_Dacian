@@ -7,7 +7,7 @@ public class GameController {
 	private static final int MAXIM = 2;
 	private static final int MINIM = 0;
 	private static final int RANGE = 1;    
-    private int counter = 0;
+        private int counter = 0;
 	private int[][] results;
 	private boolean isFirstPlayer = false;	
 	private boolean winner = false;	
@@ -45,12 +45,13 @@ public class GameController {
 		System.out.println("Enter Player name : ");
 		return sc.nextLine();
 	}
-    //entry point in game
+        //entry point in game
 	public void playGame(Scanner scanner) {
 		initScoreTable();
 		setPlayers(player1, player2, scanner);
 	}
-    //check if a first player exist, if not generate randomly first player
+        //check if a first player exist, if not generate randomly first player
+	//continue with reading each player entries
 	private void setPlayers(Player p1, Player p2, Scanner scanner) {
 		if (!isFirstPlayer ) setFirstPlayer(randomPlayers(p1, p2));
 		readPlayerEntries(p1, p2, scanner);		
@@ -95,13 +96,13 @@ public class GameController {
 			readAndSetResult(player, scanner);
 		}
 	}
-    //write each person entries in the game
+        //write each person entries in the game
 	private void writeResults(Player p) {
 		results[p.getX()][p.getY()] = p.getValue();
-		counter= counter+1; // counter increased by 1 and not more then 9
+		counter= counter+1; // counter increased by 1 and not more than 9
 	}
 	
-    //set person coordinates (X and Y)
+        //set person coordinates (X and Y)
 	private Player readEntries(Player player , Scanner s) {
 			System.out.println("X coordinate for player " + player.getName() + " :");
 			try { 
@@ -110,23 +111,22 @@ public class GameController {
 			    player.setY(s.nextInt());
 			    return player;
 			} catch (Exception e) {
-				System.out.println("\n Program was stopped - Please enter only numbers \n");
+				System.out.println("\n Oooo thats a nasty crack!!! - Please enter only numbers \n");
 			}
 			return null;
 	}
-    //validate each player entries
+        //validate each player entries
 	private void readAndSetResult(Player player, Scanner scanner) {
 		if (validateEntries(player, scanner)) {
 			setPlayerValues(player);
 			writeResults(player);
 		}
 	}
-	//check for duplicates and validate coordonates
+	//check for duplicates and validate coordinates
 	private boolean validateEntries(Player player,Scanner scanner)  {
 		if (checkPlayerCoordinates(readEntries(player, scanner))) {
 				return validateEntries(player, scanner);
 		}
-		
 		if (findDuplicates(player)){
 			System.out.println("There is already an entry with this coordinates\n"
 					+ "Please enter new coordinates!!");
@@ -135,7 +135,7 @@ public class GameController {
 			return true;
 		}		
 	}
-	//each coordonate shoud be between 0 and 2
+	//each coordinate should be between 0 and 2
 	private boolean checkPlayerCoordinates(Player player) {
 		if (player.getX() <0 || player.getX() >2) {
 			System.out.println("Set X to be a number between 0 and 2");
@@ -147,8 +147,8 @@ public class GameController {
 			return false;
 		}
 	}
-	//check for duplicate coordonate
-    private boolean findDuplicates(Player player) {
+	//check for duplicate coordinate
+        private boolean findDuplicates(Player player) {
 		boolean duplicate = false;		
 		for (int i=0; i<3;i++) {
 			for (int j=0; j<3;j++) {
@@ -209,11 +209,11 @@ public class GameController {
 		return winner;
 	}
 	
-    public void setWinner(boolean winner) {
+        public void setWinner(boolean winner) {
 		this.winner = winner;
 	}
-	//check if we have a win on diagolan
-    private boolean checkDiagonal(int[][] results) {
+        //check if we have a win on diagolan
+        private boolean checkDiagonal(int[][] results) {
 		int lineTotalValue = 0;
 		
 		for (int i=0; i<3; i++) {
@@ -296,7 +296,7 @@ public class GameController {
 			System.out.println("");
 		}
 	}
-	
+	//draw X and O on screen
 	private char drawChar(int value) {
 		char charCode = ' ';		
 		switch(value) {
