@@ -6,8 +6,7 @@ public class TikTakMain {
 	
 	public static void main(String[] args) {
 		GameController game = new GameController();
-			
-		
+        //play forever if you want
 		while(true) {
 			initGame(game);
 			play(game);
@@ -22,8 +21,7 @@ public class TikTakMain {
            game.playGame(scanner);
            if (game.isWinner()) break;           
            i++;
-        }
-        
+        }        
 	}
     
 	private static void initGame(GameController game) {
@@ -41,8 +39,9 @@ public class TikTakMain {
     	System.out.println("Are you in the mood for playing this again?");
     	System.out.println("Enter Y or N");
     	char response = scanner.next().charAt(0);
-    	boolean b =  playNextGame(response,scanner);
-    	if (b) {
+    	
+    	boolean next =  playNextGame(response,scanner);
+    	if (next) {
     		game.resetGame();
     		Util.setScanner(null);
     		scanner = Util.getScanner();
