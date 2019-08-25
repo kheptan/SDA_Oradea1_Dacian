@@ -19,13 +19,15 @@ public class Trainer {
 		}
 		return selectWorkout();
 	}
+	
 	//ask trainee if he/she want to continue
 	private Workout selectWorkout() {
 		int workout;
 		while (true) {
 			workout = scanner.nextInt();
 			if (workout > Workout.values().length - 1 || workout < 0) {
-				System.out.println("Choose a correct number between 0 and " + (Workout.values().length - 1));
+				System.out.println("Choose a correct number between 0 and "
+			               + (Workout.values().length - 1));
 				continue;
 			} else {
 				break;
@@ -35,5 +37,16 @@ public class Trainer {
 				"You've choosed " + Workout.values()[workout].name());
 		return Workout.values()[workout];
 	}
-	//display trainee workout details
+	
+	//ask trainee to continue workout or not
+	public boolean nextWorkout(char response) {		
+		if (response == 'c' || response == 'C') {
+			return true;
+		} else if (response == 'q' || response == 'Q') {
+			return false;
+		} else {
+			System.out.println("Please choose between C (continue)  or Q (quit)");
+			return nextWorkout(scanner.nextLine().charAt(0));
+		}
+	}
 }

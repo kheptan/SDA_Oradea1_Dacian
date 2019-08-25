@@ -1,6 +1,7 @@
 
 public class Trainee {
 	private static final int STRENGTHLEVEL = 50;
+	private static final int STAMINALEVEL = 30;
 
 	String name;
 	int stamina = 0;
@@ -22,7 +23,7 @@ public class Trainee {
 	// some cooldown
 	public void coolDown() {
 		System.out.println("Cool down a bit..");
-		setStamina(10);
+		setStamina(-10);
 		setStrength(10);
 	}
 	//do workout()
@@ -34,7 +35,6 @@ public class Trainee {
 		if (checkStrengthLevel()) {
 			decreaseStrength();
 		}
-
 		this.stamina = this.stamina + work.getStamina();
 		this.strength = this.strength + work.getStrength();
 	}
@@ -42,13 +42,20 @@ public class Trainee {
 	public boolean checkStaminaLevel(Workout work) {
 		if ((stamina + work.getStamina()) <= 2) {
 			return true;
-		}else {
+		}else if(getStamina() >= STAMINALEVEL){
+			decreaseStamina();
+			return false;
+		} else {
 			return false;
 		}
 	}
 
+	private void decreaseStamina() {
+		setStamina(STAMINALEVEL - (stamina + (int)(stamina * 0.5)));
+	}
+
 	private boolean checkStrengthLevel() {
-		int level = Math.abs((this.strength / STRENGTHLEVEL) * 100);
+		int level = Math.abs((strength / STRENGTHLEVEL) * 100);
 		if (level >= 90) {
 			return true;
 		}
@@ -56,7 +63,7 @@ public class Trainee {
 	}
 
 	private void decreaseStrength() {
-		this.strength = STRENGTHLEVEL - (this.strength + (int) (this.strength * 0.5));
+		strength = STRENGTHLEVEL - (strength + (int) (strength * 0.5));
 		System.out.println("I decreased strength to a lower level");
 	}
 
