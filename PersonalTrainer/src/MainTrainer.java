@@ -1,16 +1,12 @@
 
 public class MainTrainer {
 
-	private static final String QUIT = "quit";
-	private static final String CONTINUE = "continue";
-
 	private int strength = 50;
 	private int stamina = 30;
 
 	public static void main(String[] args) {
 		MainController mc = new MainController();
 		mc.initApp();
-		boolean quiting = false;
 
 		Trainee trainee = mc.getTrainee();
 		Trainer trainer = mc.getTrainer();
