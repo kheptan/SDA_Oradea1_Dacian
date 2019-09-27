@@ -1,17 +1,20 @@
 package refactor;
 
+import java.util.Iterator;
+
 public class CustomerStatement {
 	
 	void printStatement(Customer customer) {
+		PrintStatement printStatement = new PrintStatement();
+		Iterator<Rental> iterator = customer.getRentals().iterator();
 		double totalAmount = 0;
 		int frequentRenterPoints = 0;
 		
-		//Enumeration rentals = _rentals.elements();
-		String result = "Rental Record for " + customer.getName() + "\n";
+		printStatement.printHeader(customer.getName());
 		
-		while (customer.getRentals().iterator().hasNext()) {
+		while (iterator.hasNext()) {
 			double thisAmount = 0;
-			Rental each = customer.getRentals().iterator().next();
+			Rental each = iterator.next();
 			//determine amounts for each line
 			thisAmount = each.amountFor();
 			// add frequent renter points
@@ -19,18 +22,13 @@ public class CustomerStatement {
 			// add bonus for a two day new release rental
 			if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE)
 					&& 	each.getDaysRented() > 1) frequentRenterPoints ++;
-		    //show figures for this rental
-			result += "\t" + each.getMovie().getTitle()+ "\t" +
-			String.valueOf(thisAmount) + "\n";
-		    totalAmount += thisAmount;
+			
+			printStatement.addBody(each.getMovie().getTitle(), thisAmount);
+			
+			totalAmount += thisAmount;
 		}
-
-		//add footer lines
-		result += "Amount owed is " + String.valueOf(totalAmount) +
-		"\n";
-		result += "You earned " + String.valueOf(frequentRenterPoints)
-		+
-		" frequent renter points";
 		
+        printStatement.printFooter(totalAmount, frequentRenterPoints);
 	}
+
 }
