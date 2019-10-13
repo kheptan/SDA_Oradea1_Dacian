@@ -2,7 +2,9 @@ package ro.sda.factory;
 
 import java.time.LocalDate;
 
-public class Worker extends Employee {
+import ro.sda.interfaces.Tools;
+
+public class Worker extends Employee implements Tools {
 
 	public Worker(String name, double salary, JobLevel level,LocalDate date) {
 		super(name, salary, level, date);
@@ -13,5 +15,11 @@ public class Worker extends Employee {
 	void work() {
        System.out.println(this.status);		
 	}
+
+	@Override
+	public void useTool(WorkTool work) {
+		
+	}
+
 
 }
