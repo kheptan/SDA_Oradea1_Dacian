@@ -2,7 +2,8 @@ package ro.sda.factory;
 
 import java.time.LocalDate;
 
-import ro.sda.interfaces.Tools;
+import ro.sda.worktool.Tools;
+import ro.sda.worktool.WorkTool;
 
 public class Worker extends Employee implements Tools {
 

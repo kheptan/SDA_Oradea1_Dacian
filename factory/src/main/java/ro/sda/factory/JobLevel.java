@@ -5,7 +5,7 @@ public enum JobLevel {
     MANAGER(2),
     WORKER(3);
 	
-	final int level;
+	private final int level;
 
 	private JobLevel(int level) {
 		this.level = level;

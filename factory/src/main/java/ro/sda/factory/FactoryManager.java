@@ -1,9 +1,15 @@
 package ro.sda.factory;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
+
+import ro.sda.menu.Menu;
+import ro.sda.utils.JsonFile;
+import ro.sda.utils.ScannerUtils;
 
 public class FactoryManager {
 	private List<Employee> employees;
@@ -105,5 +111,16 @@ public class FactoryManager {
 			}
 		}
 		
+	}
+
+	public void processJsonStream() {
+		try {
+			JsonFile.getFile();
+			JsonFile.jsonParser();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

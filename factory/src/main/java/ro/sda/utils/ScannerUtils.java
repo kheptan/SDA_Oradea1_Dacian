@@ -1,4 +1,4 @@
-package ro.sda.factory;
+package ro.sda.utils;
 
 import java.util.Scanner;
 
