@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import ro.sda.menu.Menu;
 import ro.sda.utils.JsonFile;
@@ -13,6 +13,7 @@ import ro.sda.utils.ScannerUtils;
 
 public class FactoryManager {
 	private List<Employee> employees;
+	private Map<Long,String> worktools = JsonFile.getWorktools();
 	
 	public FactoryManager() {
 		employees = new ArrayList<Employee>();
@@ -84,15 +85,22 @@ public class FactoryManager {
 		listEMployees();
 		
 		String name = ScannerUtils.getNext();
-		if(name!=null && !employees.isEmpty()) {
-			Optional<Employee> optional = employees.stream().filter(e->e.name.equalsIgnoreCase(name)).findFirst();
-			if(optional.isPresent()) {
-				System.out.println("What do you want me to do ?");
-				String work = ScannerUtils.getNext();
-				optional.get().setStatus(work);
+		if(name!=null && !employees.isEmpty() || worktools.isEmpty()) {
+			Optional<Employee> employee = employees.stream().filter(e->e.name.equalsIgnoreCase(name)).findFirst();
+			if(employee.isPresent()) {
+				System.out.println("Give me a tool : ");
+				worktools.entrySet()
+				.forEach(e-> {
+					System.out.println("Select an id from this list");
+					System.out.println(e.getKey()+" ->"+e.getValue());
+				});
+				Integer key = ScannerUtils.getNextInt();
+				String worktool = worktools.get(key);
+				employee.get().setWorkTool(workTool);
+				//optional.get().setStatus(work);
 				System.out.println("Now my status has changed to: " + optional.get().getStatus()); 
 			} else {
-				System.out.println("Employee not found");
+				System.out.println("Employee not found and/or you don't import json file");
 			}
 		}
 	}
@@ -110,16 +118,13 @@ public class FactoryManager {
 				System.out.println("Employee not found");
 			}
 		}
-		
 	}
 
 	public void processJsonStream() {
 		try {
 			JsonFile.getFile();
 			JsonFile.jsonParser();
-			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

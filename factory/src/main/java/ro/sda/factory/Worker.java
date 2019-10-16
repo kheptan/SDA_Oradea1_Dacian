@@ -18,9 +18,7 @@ public class Worker extends Employee implements Tools {
 	}
 
 	@Override
-	public void useTool(WorkTool work) {
-		
+	public void useTool(WorkTool tool) {
+		tool.action();
 	}
-
-
 }

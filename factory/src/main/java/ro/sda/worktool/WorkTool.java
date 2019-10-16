@@ -1,7 +1,5 @@
 package ro.sda.worktool;
 
-
-
 public abstract class WorkTool {
 	final String name;
 
@@ -13,4 +11,5 @@ public abstract class WorkTool {
 		return name;
 	}
 	
+	public abstract void action();
 }

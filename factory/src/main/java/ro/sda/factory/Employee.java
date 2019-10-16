@@ -2,12 +2,16 @@ package ro.sda.factory;
 
 import java.time.LocalDate;
 
-public abstract class Employee {
+import ro.sda.worktool.Tools;
+import ro.sda.worktool.WorkTool;
+
+public abstract class Employee implements Tools {
 	String name;
 	static LocalDate date;
     double salary;
     String status;
 	final JobLevel level;
+	WorkTool workTool;
 	
 	public Employee(String name, double salary, 
 			JobLevel level, LocalDate date) {
@@ -45,6 +49,14 @@ public abstract class Employee {
 
 	public String getStatus() {
 		return status;
+	}
+
+	public WorkTool getWorkTool() {
+		return workTool;
+	}
+
+	public void setWorkTool(WorkTool workTool) {
+		this.workTool = workTool;
 	}
 	
 	
