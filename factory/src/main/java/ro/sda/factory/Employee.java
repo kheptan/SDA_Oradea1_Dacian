@@ -19,6 +19,7 @@ public abstract class Employee implements Tools {
 		this.salary = salary;
 		this.level = level;
 		this.date = date;
+		this.status="Waiting for new orders...";
 	}
 
 	abstract void work();

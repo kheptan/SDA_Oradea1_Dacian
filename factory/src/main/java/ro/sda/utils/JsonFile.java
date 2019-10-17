@@ -20,7 +20,7 @@ import org.json.simple.parser.ParseException;
 public class JsonFile {
 	private static Path path;
 	private static BufferedReader bufferedReader;
-	private static Map<Long,String> worktools = new HashMap<>();
+	private static Map<Integer,String> worktools = new HashMap<>();
 	
 	public static void getFile() throws IOException {
 	    try {
@@ -46,10 +46,11 @@ public class JsonFile {
 		try {
 			JSONObject ob = (JSONObject) parser.parse(bufferedReader);
 			JSONArray tools = (JSONArray) ob.get("WorkTools");
-			tools.iterator().forEachRemaining(e->{
+			tools.iterator().forEachRemaining(e->
+			{
 				JSONObject entry=(JSONObject) e;
 				String name = (String) entry.get("name");
-				Long id = (Long) entry.get("id");
+				Integer id = (int)(long) entry.get("id");
 				worktools.put(id, name);
 			});
 		} catch (IOException | ParseException e) {
@@ -64,7 +65,7 @@ public class JsonFile {
     	.forEach(e->System.out.println(e.getValue()));
     }
 
-	public static Map<Long, String> getWorktools() {
+	public static Map<Integer, String> getWorktools() {
 		return worktools;
 	}
 }

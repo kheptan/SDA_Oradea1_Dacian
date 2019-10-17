@@ -1,9 +1,6 @@
 package ro.sda.factory;
 
-import java.io.IOException;
-
 import ro.sda.menu.Menu;
-import ro.sda.utils.JsonFile;
 import ro.sda.utils.ScannerUtils;
 
 public class Factory {
@@ -32,14 +29,7 @@ public class Factory {
 		  case  2 : fm.listEMployees();break;
 		  case  3 : fm.doWork();break;
 		  case  4 : fm.showStatus();break;
-		  case  5 : fm.processJsonStream();break;
-		  case  6 : System.out.println("Quit");break;
-		}
-		try {
-			JsonFile.closeBuffer();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		  case  5 : System.out.println("Quit");break;
 		}
 	}
 }

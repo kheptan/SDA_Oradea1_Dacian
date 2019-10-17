@@ -12,8 +12,7 @@ public class Menu {
 	    LISTEMPLOYEES("LIST EMPLOYEES",2),
 	    GIVEORDERS("GIVE ORDERS",3),
 	    EMPLOYEESTATUS("EMPLOYEE STATUS",4),
-	    IMPORTJSON("ADD JSON FILE",5),
-	    QUITING("QUIT",6);
+	    QUITING("QUIT",5);
 		
 		private final String item;
 		private final int position;

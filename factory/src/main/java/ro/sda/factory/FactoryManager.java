@@ -10,16 +10,19 @@ import java.util.Optional;
 import ro.sda.menu.Menu;
 import ro.sda.utils.JsonFile;
 import ro.sda.utils.ScannerUtils;
+import ro.sda.worktool.WorkTool;
 
 public class FactoryManager {
 	private List<Employee> employees;
-	private Map<Long,String> worktools = JsonFile.getWorktools();
+	private Map<Integer,String> worktools = JsonFile.getWorktools();
 	
 	public FactoryManager() {
 		employees = new ArrayList<Employee>();
 	}
 
 	public void addEmployee() {
+		System.out.println("First, default json file will be imported...");
+		processJsonStream();
 		Menu.showLevel();
 		int levelSelected = ScannerUtils.getNextInt();
         pick(levelSelected);
@@ -88,17 +91,31 @@ public class FactoryManager {
 		if(name!=null && !employees.isEmpty() || worktools.isEmpty()) {
 			Optional<Employee> employee = employees.stream().filter(e->e.name.equalsIgnoreCase(name)).findFirst();
 			if(employee.isPresent()) {
-				System.out.println("Give me a tool : ");
+				System.out.println("Give me a tool to work with, select a number from list below");
 				worktools.entrySet()
 				.forEach(e-> {
-					System.out.println("Select an id from this list");
 					System.out.println(e.getKey()+" ->"+e.getValue());
 				});
 				Integer key = ScannerUtils.getNextInt();
 				String worktool = worktools.get(key);
-				employee.get().setWorkTool(workTool);
-				//optional.get().setStatus(work);
-				System.out.println("Now my status has changed to: " + optional.get().getStatus()); 
+				if(worktool!=null) {
+					try {
+						Class c = Class.forName("ro.sda.worktool."+worktool);
+						employee.get().setWorkTool((WorkTool) c.newInstance());
+						employee.get().useTool();
+						c.newInstance();
+						String status = employee.get().getStatus();
+						System.out.println("Now status is " + status);
+					} catch (ClassNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (InstantiationException e1) {
+						e1.printStackTrace();
+					} catch (IllegalAccessException e1) {
+						e1.printStackTrace();
+					}
+				} else {
+					System.out.println("Cant find any worktool");
+				}
 			} else {
 				System.out.println("Employee not found and/or you don't import json file");
 			}
@@ -120,12 +137,14 @@ public class FactoryManager {
 		}
 	}
 
-	public void processJsonStream() {
+	private void processJsonStream() {
 		try {
 			JsonFile.getFile();
 			JsonFile.jsonParser();
+			JsonFile.closeBuffer();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("-----------------------");
 	}
 }
