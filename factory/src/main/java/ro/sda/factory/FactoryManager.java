@@ -2,6 +2,7 @@ package ro.sda.factory;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,12 @@ public class FactoryManager {
 	}
 
 	public void addEmployee() {
-		System.out.println("First, default json file will be imported...");
+		System.out.println("wait a sec for importing json...");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			System.out.println("I will shut down in a sec...");
+		}
 		processJsonStream();
 		Menu.showLevel();
 		int levelSelected = ScannerUtils.getNextInt();
@@ -80,10 +86,10 @@ public class FactoryManager {
 				System.out.println("Employee name is: "+ e.name+", Level : " + e.getLevel().name());
 			});	
 		}
-		
 	}
 
-	public void doWork() {
+	
+	public synchronized void  doWork() throws InterruptedException {
 		System.out.println("Select a user name from list : ");
 		listEMployees();
 		
@@ -99,20 +105,30 @@ public class FactoryManager {
 				Integer key = ScannerUtils.getNextInt();
 				String worktool = worktools.get(key);
 				if(worktool!=null) {
-					try {
-						Class c = Class.forName("ro.sda.worktool."+worktool);
-						employee.get().setWorkTool((WorkTool) c.newInstance());
-						employee.get().useTool();
-						c.newInstance();
-						String status = employee.get().getStatus();
-						System.out.println("Now status is " + status);
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (InstantiationException e1) {
-						e1.printStackTrace();
-					} catch (IllegalAccessException e1) {
-						e1.printStackTrace();
-					}
+					Thread thread = new Thread(new Runnable() {
+						@Override
+						public void run() {
+							try {
+								Class c;
+								c = Class.forName("ro.sda.worktool."+worktool);
+								employee.get().setWorkTool((WorkTool) c.newInstance());
+								employee.get().useTool();
+								c.newInstance();
+								String status = employee.get().getStatus();
+								System.out.println("Now status is " + status);
+								
+							} catch (ClassNotFoundException e) {
+								e.printStackTrace();
+							} catch (InstantiationException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IllegalAccessException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					});
+					thread.start();
 				} else {
 					System.out.println("Cant find any worktool");
 				}
@@ -122,7 +138,7 @@ public class FactoryManager {
 		}
 	}
 
-	public void showStatus() {
+	public synchronized void showStatus() {
 		System.out.println("Select a user name from list : ");
 		listEMployees();
 		
@@ -146,5 +162,23 @@ public class FactoryManager {
 			e.printStackTrace();
 		}
 		System.out.println("-----------------------");
+	}
+
+	
+	public void calcSalary() {
+		System.out.println("Select a user name from list : ");
+		listEMployees();
+		long totalSalary = 0;
+		
+		String name = ScannerUtils.getNext();
+		if(name!=null && !employees.isEmpty() || worktools.isEmpty()) {
+			Optional<Employee> employee = employees.stream().filter(e->e.name.equalsIgnoreCase(name)).findFirst();
+			if(employee.isPresent()) {
+				Period p = Period.between(employee.get().date, LocalDate.now());//daca dif e zero, adauga ziua urmatoare
+                long numOfdays = p.plusDays(1).getDays(); //am considerat o zi lucratoare sa fie platita
+                totalSalary = (long) (numOfdays * (employee.get().salary / numOfdays)); 	
+			}
+			System.out.println("Total employee salary earned is " + totalSalary);
+		}
 	}
 }

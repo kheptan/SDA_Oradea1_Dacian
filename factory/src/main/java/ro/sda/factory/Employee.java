@@ -59,6 +59,14 @@ public abstract class Employee implements Tools {
 	public void setWorkTool(WorkTool workTool) {
 		this.workTool = workTool;
 	}
+
+	public static LocalDate getDate() {
+		return date;
+	}
+
+	public static void setDate(LocalDate date) {
+		Employee.date = date;
+	}
 	
 	
 }

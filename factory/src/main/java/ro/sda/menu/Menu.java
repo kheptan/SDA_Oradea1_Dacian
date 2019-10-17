@@ -12,7 +12,8 @@ public class Menu {
 	    LISTEMPLOYEES("LIST EMPLOYEES",2),
 	    GIVEORDERS("GIVE ORDERS",3),
 	    EMPLOYEESTATUS("EMPLOYEE STATUS",4),
-	    QUITING("QUIT",5);
+	    EMPLOYEESALARY("EMPLOYEE SALARY",5),
+	    QUITING("QUIT",6);
 		
 		private final String item;
 		private final int position;

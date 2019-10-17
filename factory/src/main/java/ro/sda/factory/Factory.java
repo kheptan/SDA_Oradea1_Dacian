@@ -24,12 +24,17 @@ public class Factory {
 	}
 
 	private static void pick(int itemSelected) {
-		switch (itemSelected) {
-		  case  1 : fm.addEmployee();break;
-		  case  2 : fm.listEMployees();break;
-		  case  3 : fm.doWork();break;
-		  case  4 : fm.showStatus();break;
-		  case  5 : System.out.println("Quit");break;
-		}
+		try {
+			switch (itemSelected) {
+				case  1 : fm.addEmployee();break;
+				case  2 : fm.listEMployees();break;
+				case  3 : fm.doWork();break;
+				case  4 : fm.showStatus();break;
+				case  5 : fm.calcSalary();break;
+				case  6 : System.out.println("Quit");break;
+			}
+		} catch (InterruptedException e) {
+            System.out.println("I wasn't done!");
+        }
 	}
 }
