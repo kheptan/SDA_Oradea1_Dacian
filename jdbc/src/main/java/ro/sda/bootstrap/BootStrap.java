@@ -9,7 +9,10 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AvailableSettings;
 
+import ro.sda.entities.Attendence;
 import ro.sda.entities.ClassRoom;
+import ro.sda.entities.Course;
+import ro.sda.entities.Module;
 import ro.sda.entities.Person;
 import ro.sda.entities.Team;
 
@@ -30,7 +33,9 @@ public class BootStrap {
 		sources.addAnnotatedClass(Team.class);
 		sources.addAnnotatedClass(Person.class);
 		sources.addAnnotatedClass(ClassRoom.class);
-		
+		sources.addAnnotatedClass(Course.class);
+		sources.addAnnotatedClass(Module.class);
+		sources.addAnnotatedClass(Attendence.class);
 		MetadataBuilder metadataBuilder = sources.getMetadataBuilder();
 		
 		Metadata metadata = metadataBuilder.build();

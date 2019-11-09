@@ -1,12 +1,14 @@
 package ro.sda.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.metamodel.StaticMetamodel;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Person {
@@ -17,9 +19,15 @@ public class Person {
 	private String lastName;
 	private String email;
 	private byte isTrainer;
+	
+	@OneToMany(mappedBy = "person")
+	private List<Attendence> attendence;
+	
+	@OneToMany(mappedBy = "person")
+	private List<Module> module;
 
 	@ManyToOne
-    @JoinColumn(name="idTeam")
+	@JoinColumn(name="idTeam")
 	private Team team;
 	
 	public Person() {}
@@ -34,8 +42,6 @@ public class Person {
 		this.email = email;
 		this.isTrainer = isTrainer;
 	}
-	
-	
 	
 	public int getIdPerson() {
 		return idPerson;
@@ -76,6 +82,30 @@ public class Person {
 
 	public void setIsTrainer(byte isTrainer) {
 		this.isTrainer = isTrainer;
+	}
+
+	public List<Attendence> getAttendence() {
+		return attendence;
+	}
+
+	public void setAttendence(List<Attendence> attendence) {
+		this.attendence = attendence;
+	}
+
+	public List<Module> getModule() {
+		return module;
+	}
+
+	public void setModule(List<Module> module) {
+		this.module = module;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 	
 	

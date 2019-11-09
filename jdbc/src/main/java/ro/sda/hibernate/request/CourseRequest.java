@@ -10,24 +10,16 @@ import org.hibernate.Session;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import ro.sda.bootstrap.BootStrap;
-import ro.sda.entities.ClassRoom;
-import ro.sda.entities.ClassRoom_;
+import ro.sda.entities.Course;
+import ro.sda.entities.Course_;
 import ro.sda.request.Request;
 
-public class ClassRoomRequest implements Request<ClassRoom> {
+public class CourseRequest implements Request<Course> {
 	private static final Session session = BootStrap.getSession();
-	private static final CriteriaBuilder builder = session.getCriteriaBuilder();
-	
-	public ClassRoom getClassRoom(String byName) {
-		CriteriaQuery<ClassRoom> criteria = builder.createQuery(ClassRoom.class);
-		Root<ClassRoom> root = criteria.from(ClassRoom.class);
-		criteria.select(root);
-		criteria.where(root.get(ClassRoom_.NAME).in(byName));
-		return session.createQuery(criteria).getSingleResult();
-	}
-	
+	private static final CriteriaBuilder builder = session.getCriteriaBuilder(); 
+
 	@Override
-	public int insert(ClassRoom t) {
+	public int insert(Course t) {
 		session.getTransaction().begin();
 		session.save(t);
 		session.getTransaction().commit();
@@ -42,26 +34,33 @@ public class ClassRoomRequest implements Request<ClassRoom> {
 	}
 
 	@Override
-	public int update(ClassRoom t) {
+	public int update(Course t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	public Course getCourse(String byName) {
+		CriteriaQuery<Course> criteria = builder.createQuery(Course.class);
+		Root<Course> root = criteria.from(Course.class);
+		criteria.select(root);
+		criteria.where(root.get(Course_.NAME).in(byName));
+		return session.createQuery(criteria).getSingleResult();
+	}
+	
 	@Override
-	public List<ClassRoom> selectAll() {
-		CriteriaQuery<ClassRoom> criteria = builder.createQuery(ClassRoom.class);
-		Root<ClassRoom> root = criteria.from(ClassRoom.class);
+	public List<Course> selectAll() {
+		CriteriaQuery<Course> criteria = builder.createQuery(Course.class);
+		Root<Course> root = criteria.from(Course.class);
 		criteria.select(root);
 		return session.createQuery(criteria).getResultList();
 	}
 
 	@Override
-	public int delete(ClassRoom t) {
+	public int delete(Course t) {
 		session.getTransaction().begin();
 		session.delete(t);
 		session.getTransaction().commit();
 		return 0;
 	}
-	
-	
+
 }

@@ -1,9 +1,12 @@
 package ro.sda.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ClassRoom {
@@ -13,9 +16,12 @@ public class ClassRoom {
 	private String name;
 	private String address;
 	
+	@OneToMany(mappedBy = "classroom")
+	private List<Module> module;
+	
 	public ClassRoom() {
 	}
-
+	
 	public ClassRoom(int idClassroom, String name, String address) {
 		this.idClassroom = idClassroom;
 		this.name = name;
@@ -49,6 +55,14 @@ public class ClassRoom {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public List<Module> getModule() {
+		return module;
+	}
+
+	public void setModule(List<Module> module) {
+		this.module = module;
 	}
 	
 	

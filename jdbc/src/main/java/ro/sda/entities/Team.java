@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.metamodel.StaticMetamodel;
 
 @Entity
 public class Team {
@@ -21,6 +20,9 @@ public class Team {
 	
 	@OneToMany(mappedBy = "team")
 	private List<Person> persons;
+	
+	@OneToMany(mappedBy = "team")
+	private List<Module> modules;
 	
 	public Team() {
 		
@@ -70,6 +72,12 @@ public class Team {
 
 	public void setPersons(List<Person> persons) {
 		this.persons = persons;
+	}
+	public List<Module> getModules() {
+		return modules;
+	}
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
 	}
 	
 	
