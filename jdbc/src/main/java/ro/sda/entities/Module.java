@@ -46,4 +46,38 @@ public class Module {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
+
+	public int getIdModule() {
+		return idModule;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public ClassRoom getClassroom() {
+		return classroom;
+	}
+
+	public List<Attendence> getAttendence() {
+		return attendence;
+	}
+	
+	
 }

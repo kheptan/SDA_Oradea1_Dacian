@@ -6,14 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Attendents")
 public class Attendence {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idAttendents;
 
-	private boolean isPresent;
+	private int isPresent;
 	private String comments;
 	
 	@ManyToOne()
@@ -30,7 +32,7 @@ public class Attendence {
 	
 	public Attendence() {}
 	
-	public Attendence(boolean isPresent, String comments) {
+	public Attendence(int isPresent, String comments) {
 		this.isPresent = isPresent;
 		this.comments = comments;
 	}
@@ -41,11 +43,11 @@ public class Attendence {
 		this.idAttendents = idAttendents;
 	}
 
-	public boolean isPresent() {
+	public int isPresent() {
 		return isPresent;
 	}
 
-	public void setPresent(boolean isPresent) {
+	public void setPresent(int isPresent) {
 		this.isPresent = isPresent;
 	}
 
@@ -55,6 +57,22 @@ public class Attendence {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
 	}
 
 

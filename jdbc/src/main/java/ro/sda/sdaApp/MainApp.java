@@ -3,56 +3,39 @@ package ro.sda.sdaApp;
 import org.hibernate.Session;
 
 import ro.sda.bootstrap.BootStrap;
-import ro.sda.hibernate.repository.ModuleQuery;
 
 public class MainApp {
 	
 	private static final Session session = BootStrap.getSession();
 	
 	public static void main(String[] args) {
-		//Get all students - DONE
+		//Get all students 
 		//PersonQuery.printAllPersons();
 		
-		//Get a team by id  - DONE
-		//PersonQuery.printPersonByTeam(3);
+		//List all students for a group 
+		//PersonQuery.printPersonByTeam(2);
 		
-		//Get teams by Location - Done
+		//List all groups that had classes in location Intensa
 		//ModuleQuery.printTeamsByLocation("intesa");
 		
-		//Get teams in march - Done
-		ModuleQuery.printTeamsInMarch("Inspectorat");
+		//List all groups that had classes in location Inspectorat in March 2019
+		//ModuleQuery.printTeamsInMarch("Inspectorat");
 		
-		//ClassRoomQuery.createNewClassRoom("New ClassRoom", "in space");
-		//ClassRoomQuery.deleteClassRoom("New ClassRoom");
-		//List<ClassRoom> classes = ClassRoomQuery.getAllClassRooms();
-		//classes.forEach(e->System.out.println(e.getName()));
+		//List all students that already finished the SQL module
+		//ModuleQuery.printStudentsWithSqlFinished();
 		
-		//CourseQuery.createNewCourse("Curs Hibernate", "hibernate basics");
-		//List<Course> courses = CourseQuery.getAllCourses();
-		//CourseQuery.deleteCourse("Hibernate");
-		/*
-		CriteriaBuilder builder = session.getCriteriaBuilder();
-		CriteriaQuery<Tuple> criteria = builder.createTupleQuery();
+		//List all students with 100% attendance rate
+		//ModuleQuery.printStudentsWithNoAbsence();
 		
-		Root<Team> root = criteria.from(Team.class);
-		Join<Team,Person> owner = root.join(Team_.PERSONS);
+		// List all trainers that teach Java Fundamentals
+		//ModuleQuery.printAllJavaTrainers();
 		
-		Path<String> fname = owner.get(Person_.FIRST_NAME);
-		Path<String> sname = owner.get(Person_.LAST_NAME);
-		Path<String> email = owner.get(Person_.EMAIL);
+		//List all trainers that teach at Intensa location
+		//ModuleQuery.printAllTrainersAtLocation("Intesa");
 		
-		criteria.multiselect(fname,sname,email);
-		criteria.where(root.get(Team_.NAME).in("oradea"));
+		//List all trainers that taught students with 100% attendance rate
+		//ModuleQuery.printTeacherWithIntegralStudents();
 		
-		List<Tuple> result = session.createQuery(criteria).getResultList();
-		
-		result.forEach(e-> {
-			System.out.print(e.get(fname)+" ");
-			System.out.print(e.get(sname)+" ");
-			System.out.println(e.get(email)+" ");
-			});
-		session.close();
-		*/
 	}
 	
 		
