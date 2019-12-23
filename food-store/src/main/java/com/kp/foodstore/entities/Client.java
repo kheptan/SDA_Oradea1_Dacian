@@ -9,12 +9,6 @@ import javax.persistence.Table;
 @Table(name="client")
 public class Client extends AppUser {
 
-	private Integer id;
-	
-	public Integer getId() {
-		return id;
-	}
-
 	private Integer phone;
 	
 	private String address;
