@@ -15,18 +15,18 @@
 {
 	"name" : "pizza",
 	"products" : [
-			{
-				"name" : "pizza margherita",
-				"price" : 12.90
-			},
-			{
-				"name" : "pizza romana",
-				"price" : 11.10
-			},
-			{
-				"name" : "pizza prosciuto",
-				"price" : 12.0
-			}
+		{
+		  "name" : "pizza margherita",
+		  "price" : 12.90
+		},
+		{
+   		  "name" : "pizza romana",
+    		  "price" : 11.10
+		},
+		{
+		  "name" : "pizza prosciuto",
+   		  "price" : 12.0
+		}
 	]
 }
 
@@ -48,19 +48,19 @@
 {
 	"status" : "CONFIRMED",
 	"client" : {
-				"id": 1
-		},
+		      "id": 1
+		   },
 	"restaurant" : {
-				"id" : 1	
+	     	  "id" : 1	
 		},
 	"details" : [
 		{
-			"product" : { "id" : 1 },
-			"qty" : 10
+	    	   "product" : { "id" : 1 },
+	   	   "qty" : 10
 		},
 		{
-			"product" : { "id" : 2 },
-			"qty" : 2
+	 	   "product" : { "id" : 2 },
+	  	   "qty" : 2
 		}
 	]		
 }
