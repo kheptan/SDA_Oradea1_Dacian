@@ -72,8 +72,8 @@ public class Restaurant {
 		return categories;
 	}
 
-	public void setCategories(List<Category> categories2) {
-		this.categories = categories2;
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 	
 	

@@ -17,7 +17,7 @@ public class OrderDetail {
 	@OneToOne
 	private Product product;
 	
-	private Double qty;
+	private Integer qty;
 
 	public OrderDetail() {}
 	
@@ -29,11 +29,11 @@ public class OrderDetail {
 		this.product = product;
 	}
 
-	public Double getQty() {
+	public Integer getQty() {
 		return qty;
 	}
 
-	public void setQty(Double qty) {
+	public void setQty(Integer qty) {
 		this.qty = qty;
 	}
 	

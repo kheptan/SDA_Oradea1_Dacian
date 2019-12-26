@@ -18,7 +18,4 @@ public enum Status {
 	public void setStats(String status) {
 		this.status = status;
 	}
-	
-	
-	
 }

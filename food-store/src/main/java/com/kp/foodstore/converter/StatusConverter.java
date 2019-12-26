@@ -12,14 +12,14 @@ public class StatusConverter implements AttributeConverter<Status, String> {
 			return null;
 		}
 		switch (attribute) {
-		case CONFIRMED : 
-			return "C";
-		case PROCESSED :
-			return "P";
-		case DELIVERED : 
-			return "D";
-		default:
-			throw new IllegalArgumentException("Status not supported");
+			case CONFIRMED : 
+				return "C";
+			case PROCESSED :
+				return "P";
+			case DELIVERED : 
+				return "D";
+			default:
+				throw new IllegalArgumentException("Status not supported");
 		}
 	}
 
@@ -29,14 +29,14 @@ public class StatusConverter implements AttributeConverter<Status, String> {
 			return null;
 		}
 		switch (dbData) {
-		case "C" : 
-			return Status.CONFIRMED;
-		case "P" :
-			return Status.PROCESSED;
-		case "D" : 
-			return Status.DELIVERED;
-		default:
-			throw new IllegalArgumentException("Status not supported");
+			case "C" : 
+				return Status.CONFIRMED;
+			case "P" :
+				return Status.PROCESSED;
+			case "D" : 
+				return Status.DELIVERED;
+			default:
+				throw new IllegalArgumentException("Status not supported");
 		}
 	}
 

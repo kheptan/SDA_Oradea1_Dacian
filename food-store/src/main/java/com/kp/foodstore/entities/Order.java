@@ -25,7 +25,7 @@ public class Order {
 	
 	private Status status;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Client client;
 	
 	@ManyToOne

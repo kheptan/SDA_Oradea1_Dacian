@@ -14,7 +14,4 @@ public interface OrderTotal {
 	
 	@Value("#{target.total}")
 	Double getTotal();
-	
-	
-	
 }
