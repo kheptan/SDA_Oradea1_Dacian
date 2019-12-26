@@ -3,10 +3,9 @@
 >  http://localhost:8080/app/client/new
 ```json
 {
-    "id": 1,
-    "client": "Dacian",
-    "restaurant": "DueFratelli",
-    "total": 142.2
+	"name" : "Dacian",
+	"phone" : 129712,
+	"address": "miron pompiliu 35"
 }
 
 ```
