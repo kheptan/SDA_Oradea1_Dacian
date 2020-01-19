@@ -39,10 +39,4 @@ public class CategoryController {
 		return categoryService.getAll();
 	}
 	
-	@DeleteMapping(path = "/del/{id}")
-	public @ResponseBody String delCategory(@PathVariable Integer id) {
-		categoryService.delete(id);
-		return "Deleted";
-	}
-
 }

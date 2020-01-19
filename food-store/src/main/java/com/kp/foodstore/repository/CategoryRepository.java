@@ -13,8 +13,6 @@ public interface CategoryRepository extends CrudRepository<Category, Integer> {
 	
 	List<Category> findAll();
 
-	void deleteById(Integer id);
-	
 	@Query("select c from Category c where id in ?1")
     List<Category> findByIdIn(List<Integer> keys);	
 }

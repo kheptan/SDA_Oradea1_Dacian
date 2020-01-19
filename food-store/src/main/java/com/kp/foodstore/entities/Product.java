@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "product")
 public class Product {
@@ -19,6 +21,7 @@ public class Product {
 	
 	private Double price;
 	
+	@JsonBackReference
 	@OneToOne(mappedBy = "product")
 	private OrderDetail orderDetail;
 	

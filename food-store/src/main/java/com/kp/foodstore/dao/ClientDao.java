@@ -5,25 +5,15 @@ import java.util.Set;
 import com.kp.foodstore.entities.Order;
 
 public class ClientDao {
-
-	private Integer id;
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
+	//private Integer id;
 	private String name;
-	
 	private Integer phone;
-	
 	private String address;
+	//Set<Order> orders;
 	
-	Set<Order> orders;
-
+	public ClientDao() {
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -48,13 +38,6 @@ public class ClientDao {
 		this.address = address;
 	}
 
-	public Set<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
-	}
 	
 	
 }

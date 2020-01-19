@@ -44,7 +44,4 @@ public class CategoryService {
 		return repository.findAll();
 	}
 	
-	public void delete(Integer id) {
-		repository.deleteById(id);
-	}
 }

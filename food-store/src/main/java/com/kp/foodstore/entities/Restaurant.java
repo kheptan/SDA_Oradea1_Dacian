@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "restaurant")
 public class Restaurant {
@@ -23,9 +25,11 @@ public class Restaurant {
 	
 	private String address;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "restaurant")
 	private Set<Order> order;
 	
+	@JsonBackReference
 	@ManyToMany
 	private List<Category> categories;
 	

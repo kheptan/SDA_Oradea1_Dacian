@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="client")
 public class Client extends AppUser {
@@ -13,6 +15,7 @@ public class Client extends AppUser {
 	
 	private String address;
 	
+	@JsonBackReference(value = "user-ref")
 	@OneToMany(mappedBy = "client")
 	private Set<Order> orders;
 	

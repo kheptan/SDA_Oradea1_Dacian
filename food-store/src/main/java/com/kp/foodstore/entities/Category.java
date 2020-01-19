@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="category")
 public class Category {
@@ -30,6 +32,7 @@ public class Category {
 	@JoinColumn(name = "category_id")
 	private Set<Product> products;
 	
+	@JsonManagedReference
 	@ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
 	private  Set<Restaurant> restaurants;
 	

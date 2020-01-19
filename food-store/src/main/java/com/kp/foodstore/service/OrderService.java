@@ -1,5 +1,6 @@
 package com.kp.foodstore.service;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,7 +53,10 @@ public class OrderService {
 	}
 
 	public OrderTotal getOrder(Integer id) {
-		
-		return repository.getTotalResult(id);
+		return repository.getOrder(id);
+	}
+	
+	public List<OrderTotal> getAllOrders(){
+		return repository.getAll();
 	}
 }

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.kp.foodstore.converter.Status;
 
 @Entity
@@ -25,9 +26,11 @@ public class Order {
 	
 	private Status status;
 	
+	@JsonManagedReference(value = "user-ref")
 	@ManyToOne
 	private Client client;
 	
+	@JsonManagedReference
 	@ManyToOne
 	private Restaurant restaurant;
 	
